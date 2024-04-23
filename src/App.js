@@ -4,17 +4,20 @@ import MovieCard from './MovieCard';
 import './App.css';
 import SearchIcon from './search.svg';
 
-const DATA_API_URL = 'http://www.omdbapi.com/?apikey=c14e3faa';
+// const DATA_API_URL = 'http://www.omdbapi.com/?apikey=c14e3faa';
 
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchWithMovie, setSearchWithMovie] = useState("Superman");
 
     const searchMovies = async (title) => {
-        const response = await fetch(`${DATA_API_URL}&s=${title}`);
-        const data = await response.json();
+        // const response = await fetch(`${DATA_API_URL}&s=${title}`);
+        // const data = await response.json();
 
-        setMovies(data.Search);
+        const response2 = await fetch(`http://localhost:8081/Movies?title=${title}`);
+        const dataFromDb = await response2.json();
+
+        setMovies(dataFromDb);
     }
 
     useEffect(() => {
